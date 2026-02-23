@@ -7,7 +7,15 @@
 // - Enables unlimited views of DM visual messages
 %hook IGTallNavigationBarView
 - (void)setRightBarButtonItems:(NSArray <UIBarButtonItem *> *)items {
-    NSMutableArray *new_items = [items mutableCopy];
+    NSMutableArray *new_items = [[items filteredArrayUsingPredicate:
+        [NSPredicate predicateWithBlock:^BOOL(UIView *value, NSDictionary *_) {
+            if ([SCIUtils getBoolPref:@"hide_reels_blend"]) {
+                return ![value.accessibilityIdentifier isEqualToString:@"blend-button"];
+            }
+
+            return true;
+        }]
+    ] mutableCopy];
 
     // Messages seen
     if ([SCIUtils getBoolPref:@"remove_lastseen"]) {
