@@ -65,11 +65,12 @@ A feature-rich tweak for Instagram on iOS!\
 
 ### Stories and messages
 - Keep deleted messages
-- Disable screenshot detection
+- Manually mark messages as seen
+- Disable typing status
 - Unlimited replay of direct stories
-- Disabling sending read receipts
-- Disable story seen receipt
 - Disable view-once limitations
+- Disable screenshot detection
+- Disable story seen receipt
 
 ### Navigation
 - Modify tab bar icon order

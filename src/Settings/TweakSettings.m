@@ -115,18 +115,19 @@
                                             ]
                                         }]
                 ],
-                [SCISetting navigationCellWithTitle:@"Messages and Stories"
+                [SCISetting navigationCellWithTitle:@"Stories and messages"
                                            subtitle:@""
                                                icon:[SCISymbol symbolWithName:@"rectangle.portrait.on.rectangle.portrait.angled"]
                                         navSections:@[@{
                                             @"header": @"Messages",
                                             @"rows": @[
                                                 [SCISetting switchCellWithTitle:@"Keep deleted messages" subtitle:@"Saves deleted messages in chat conversations" defaultsKey:@"keep_deleted_message"],
-                                                [SCISetting switchCellWithTitle:@"Manually mark messages as seen" subtitle:@"Adds a button to DM threads, which will mark messages as seen" defaultsKey:@"remove_lastseen"]
+                                                [SCISetting switchCellWithTitle:@"Manually mark messages as seen" subtitle:@"Adds a button to DM threads, which will mark messages as seen" defaultsKey:@"remove_lastseen"],
+                                                [SCISetting switchCellWithTitle:@"Disable typing status" subtitle:@"Prevents the typing indicator from being shown to others when you're typing in DMs" defaultsKey:@"disable_typing_status"],
                                             ]
                                         },
                                         @{
-                                            @"header": @"Visual Messages/Stories",
+                                            @"header": @"Visual messages & stories",
                                             @"rows": @[
                                                 [SCISetting switchCellWithTitle:@"Unlimited replay of visual messages" subtitle:@"Replays direct visual messages normal/once stories unlimited times (toggle with image check icon)" defaultsKey:@"unlimited_replay"],
                                                 [SCISetting switchCellWithTitle:@"Disable view-once limitations" subtitle:@"Makes view-once messages behave like normal visual messages (loopable/pauseable)" defaultsKey:@"disable_view_once_limitations"],
