@@ -116,7 +116,20 @@ static NSArray *removeItemsInList(NSArray *list, BOOL isFeed) {
 // Suggested posts/reels
 %hook IGMainFeedListAdapterDataSource
 - (NSArray *)objectsForListAdapter:(id)arg1 {
-    return removeItemsInList(%orig, YES);
+    NSArray *filteredObjs = removeItemsInList(%orig, YES);
+
+    // Remove loading spinner at end of feed (if 5 or less items in feed)
+    NSUInteger arrayLength = [filteredObjs count];
+
+    if (arrayLength <= 5) {
+        filteredObjs = [filteredObjs filteredArrayUsingPredicate:
+            [NSPredicate predicateWithBlock:^BOOL(id obj, NSDictionary *bindings) {
+                return ![obj isKindOfClass:[%c(IGSpinnerLabelViewModel) class]];
+            }]
+        ];
+    }
+
+    return filteredObjs;
 }
 %end
 %hook IGSundialFeedDataSource
