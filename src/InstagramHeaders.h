@@ -473,6 +473,9 @@
 - (void)addHandleLongPress; // new
 @end
 
+@interface IGStoryFullscreenDefaultFooterView : NSObject
+@end
+
 
 
 /////////////////////////////////////////////////////////////////////////////
