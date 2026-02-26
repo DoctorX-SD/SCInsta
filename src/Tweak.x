@@ -583,16 +583,6 @@ shouldPersistLastBugReportId:(id)arg6
 
 // Confirm buttons
 
-/*
-* Long press alerts can be triggered continuously by holding down on the button
-*
-* Instead, you call the "_didTap" method from the "_didLongPress" method
-* Then, in the "_didTap" method, you make sure the confirm alert is only shown once
-*/
-
-static BOOL showingFeedItemUFIConfirm = NO;
-static BOOL showingVerticalUFIConfirm = NO;
-
 %hook IGFeedItemUFICell
 - (void)UFIButtonBarDidTapOnLike:(id)arg1 {
     if ([SCIUtils getBoolPref:@"like_confirm"]) {
@@ -606,15 +596,10 @@ static BOOL showingVerticalUFIConfirm = NO;
 }
 
 - (void)UFIButtonBarDidTapOnRepost:(id)arg1 {
-    if (showingFeedItemUFIConfirm) return;
-
     if ([SCIUtils getBoolPref:@"repost_confirm"]) {
         NSLog(@"[SCInsta] Confirm repost triggered");
 
-        showingFeedItemUFIConfirm = YES;
-
-        [SCIUtils showConfirmation:^(void) { %orig; showingFeedItemUFIConfirm = NO; }
-                     cancelHandler:^(void) { showingFeedItemUFIConfirm = NO; }];
+        [SCIUtils showConfirmation:^(void) { %orig; }];
     }
     else {
         return %orig;
@@ -623,9 +608,7 @@ static BOOL showingVerticalUFIConfirm = NO;
 
 - (void)UFIButtonBarDidLongPressOnRepost:(id)arg1 {
     if ([SCIUtils getBoolPref:@"repost_confirm"]) {
-        NSLog(@"[SCInsta] Confirm repost triggered (long press hack)");
-
-        [self UFIButtonBarDidTapOnRepost:nil];
+        NSLog(@"[SCInsta] Confirm repost triggered (long press ignored)");
     }
     else {
         return %orig;
@@ -633,9 +616,7 @@ static BOOL showingVerticalUFIConfirm = NO;
 }
 - (void)UFIButtonBarDidLongPressOnRepost:(id)arg1 withGestureRecognizer:(id)arg2 {
     if ([SCIUtils getBoolPref:@"repost_confirm"]) {
-        NSLog(@"[SCInsta] Confirm repost triggered (long press hack)");
-
-        [self UFIButtonBarDidTapOnRepost:nil];
+        NSLog(@"[SCInsta] Confirm repost triggered (long press ignored)");
     }
     else {
         return %orig;
@@ -645,15 +626,10 @@ static BOOL showingVerticalUFIConfirm = NO;
 
 %hook IGSundialViewerVerticalUFI
 - (void)_didTapLikeButton:(id)arg1 {
-    if (showingVerticalUFIConfirm) return;
-
     if ([SCIUtils getBoolPref:@"like_confirm_reels"]) {
         NSLog(@"[SCInsta] Confirm reels like triggered");
 
-        showingVerticalUFIConfirm = YES;
-
-        [SCIUtils showConfirmation:^(void) { %orig; showingVerticalUFIConfirm = NO; }
-                     cancelHandler:^(void) { showingVerticalUFIConfirm = NO; }];
+        [SCIUtils showConfirmation:^(void) { %orig; }];
     }
     else {
         return %orig;
@@ -662,9 +638,7 @@ static BOOL showingVerticalUFIConfirm = NO;
 
 - (void)_didLongPressLikeButton:(id)arg1 {
     if ([SCIUtils getBoolPref:@"like_confirm_reels"]) {
-        NSLog(@"[SCInsta] Confirm reels like triggered (long press hack)");
-
-        [self _didTapLikeButton:nil];
+        NSLog(@"[SCInsta] Confirm repost triggered (long press ignored)");
     }
     else {
         return %orig;
@@ -672,15 +646,10 @@ static BOOL showingVerticalUFIConfirm = NO;
 }
 
 - (void)_didTapRepostButton:(id)arg1 {
-    if (showingVerticalUFIConfirm) return;
-
     if ([SCIUtils getBoolPref:@"repost_confirm"]) {
         NSLog(@"[SCInsta] Confirm repost triggered");
 
-        showingVerticalUFIConfirm = YES;
-
-        [SCIUtils showConfirmation:^(void) { %orig; showingVerticalUFIConfirm = NO; }
-                     cancelHandler:^(void) { showingVerticalUFIConfirm = NO; }];
+        [SCIUtils showConfirmation:^(void) { %orig; }];
     }
     else {
         return %orig;
@@ -689,9 +658,7 @@ static BOOL showingVerticalUFIConfirm = NO;
 
 - (void)_didLongPressRepostButton:(id)arg1 {
     if ([SCIUtils getBoolPref:@"repost_confirm"]) {
-        NSLog(@"[SCInsta] Confirm repost triggered (long press hack)");
-
-        [self _didTapRepostButton:nil];
+        NSLog(@"[SCInsta] Confirm repost triggered (long press ignored)");
     }
     else {
         return %orig;
