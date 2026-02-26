@@ -217,6 +217,7 @@
                                         @{
                                             @"header": @"SCInsta",
                                             @"rows": @[
+                                                [SCISetting switchCellWithTitle:@"Enable tweak settings quick-access" subtitle:@"Allows you to hold on the home tab to open the SCInsta settings" defaultsKey:@"settings_shortcut" requiresRestart:YES],
                                                 [SCISetting switchCellWithTitle:@"Show tweak settings on app launch" subtitle:@"Automatically opens the SCInsta settings when the app launches" defaultsKey:@"tweak_settings_app_launch"],
                                                 [SCISetting buttonCellWithTitle:@"Reset onboarding completion state"
                                                                            subtitle:@""

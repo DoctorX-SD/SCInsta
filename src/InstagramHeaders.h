@@ -468,6 +468,10 @@
 - (void)markLastMessageAsSeen;
 @end
 
+@interface IGTabBarButton : UIButton
+- (void)addHandleLongPress; // new
+@end
+
 
 
 /////////////////////////////////////////////////////////////////////////////
