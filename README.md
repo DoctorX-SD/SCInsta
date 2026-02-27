@@ -54,6 +54,7 @@ A feature-rich tweak for Instagram on iOS!\
 - Confirm reel refresh
 - Hide reels header
 - Disable scrolling reels
+- Prevent doom scrolling (limit maximum viewable reels)
 
 ### Saving
 - Download feed posts

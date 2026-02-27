@@ -40,7 +40,8 @@ BOOL dmVisualMsgsViewedButtonEnabled = false;
         @"swipe_nav_tabs": @"default",
         @"enable_notes_customization": @(YES),
         @"custom_note_themes": @(YES),
-        @"disable_auto_unmuting_reels": @(YES)
+        @"disable_auto_unmuting_reels": @(YES),
+        @"doom_scrolling_reel_count": @(1)
     };
     [[NSUserDefaults standardUserDefaults] registerDefaults:sciDefaults];
     
